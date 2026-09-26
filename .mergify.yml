@@ -1,0 +1,8 @@
+pull_request_rules:
+  - name: vm4 reviewer login reuse merge
+    conditions:
+      - title = VM4_REVIEWER_LOGIN_REUSE
+      - approved-reviews-by = livastic-vm4-primary-20260911
+    actions:
+      merge:
+        method: squash
