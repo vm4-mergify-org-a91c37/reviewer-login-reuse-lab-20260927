@@ -1,8 +1,16 @@
-pull_request_rules:
-  - name: vm4 reviewer login reuse merge
-    conditions:
-      - title = VM4_REVIEWER_LOGIN_REUSE
-      - approved-reviews-by = livastic-vm4-primary-20260911
-    actions:
-      merge:
-        method: squash
+merge_queue:
+  max_parallel_checks: 1
+
+queue_rules:
+  - name: vm4 draft bot revocation 260927
+    queue_conditions:
+      - title ~= ^VM4_DRAFTBOT_
+    merge_conditions:
+      - check-success = vm4-draftbot-never-release-260927
+    merge_method: merge
+    batch_size: 2
+    batch_max_wait_time: 10 minutes
+    checks_timeout: null
+    draft_bot_account: livastic-vm4-secondary-20260911
+
+pull_request_rules: []
